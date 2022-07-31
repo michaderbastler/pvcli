@@ -25,16 +25,14 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/michaderbastler/pvcli/cmd/print"
-	"github.com/michaderbastler/pvcli/cmd/version"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
 var rootCmdFlags struct {
 	cfgFile string
-	Verbose bool
-	Port    int
+	verbose bool
+	port    int
 }
 
 // rootCmd represents the base command when called without any subcommands
@@ -69,16 +67,12 @@ func init() {
 	// will be global for your application.
 
 	rootCmd.PersistentFlags().StringVar(&rootCmdFlags.cfgFile, "config", "", "config file (default is $HOME/.pvcli.yaml)")
-	rootCmd.PersistentFlags().BoolVarP(&rootCmdFlags.Verbose, "verbose", "v", false, "verbose output")
-	rootCmd.PersistentFlags().IntVarP(&rootCmdFlags.Port, "port", "p", 8080, "port of PV")
+	rootCmd.PersistentFlags().BoolVarP(&rootCmdFlags.verbose, "verbose", "v", false, "verbose output")
+	rootCmd.PersistentFlags().IntVarP(&rootCmdFlags.port, "port", "p", 8080, "port of PV")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-
-	// Adding subcommands
-	rootCmd.AddCommand(print.PrintCmd)
-	rootCmd.AddCommand(version.VersionCmd)
 }
 
 // initConfig reads in config file and ENV variables if set.

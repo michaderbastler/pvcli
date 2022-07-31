@@ -19,7 +19,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package print
+package cmd
 
 import (
 	"fmt"
@@ -27,9 +27,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// PrintCmd represents the print command
-var PrintCmd = &cobra.Command{
-	Use:   "print",
+// portCmd represents the port command
+var portCmd = &cobra.Command{
+	Use:   "port",
 	Short: "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
@@ -38,18 +38,22 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("print called")
+		fmt.Println("port called")
+		fmt.Println(cmd.Flag("port").Value.String())
+		fmt.Println(rootCmdFlags.port)
 	},
 }
 
 func init() {
+	printCmd.AddCommand(portCmd)
+
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// printCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// portCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// printCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// portCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
